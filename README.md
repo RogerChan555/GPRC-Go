@@ -1,6 +1,3 @@
-# grpc-microservices
-What gRPC micro services are for.
-
 # Benefits of gRPC Microservices
 
 ### Performance
