@@ -1,3 +1,9 @@
+# Intro
+
+gRPC is a modern, lightweight communication protocol and high-performance RPC framework introduced by Google. It can efficiently connect services in a microservices environment
+with built-in support for load balancing, tracing, health checking, and authentication. gRPC provides easy to use and efficient communication using protocol buffers,
+an open source mechanism for serializing structured data.
+
 # Benefits of gRPC Microservices
 
 ### Performance
