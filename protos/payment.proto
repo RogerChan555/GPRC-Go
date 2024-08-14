@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package payment;
+
+option go_package = "github.com/fmo/grpc/protos/golang/payment";
+
+service PaymentService {
+  rpc MakePayment (PaymentRequest) returns (PaymentResponse);
+}
+
+message PaymentRequest {
+  string user_id = 1;
+  double amount = 2;
+  string currency = 3;
+  string payment_method = 4;
+}
+
+message PaymentResponse {
+  bool success = 1;
+  string transaction_id = 2;
+  string message = 3;
+}

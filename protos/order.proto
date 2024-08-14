@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package order;
+
+option go_package = "github.com/fmo/grpc/protos/golang/order";
+
+service OrderService {
+  rpc PlaceOrder (OrderRequest) returns (OrderResponse);
+}
+
+message OrderRequest {
+  string user_id = 1;
+  repeated OrderItem items = 2;
+  string address = 3;
+  string payment_method = 4;
+}
+
+message OrderItem {
+  string product_id = 1;
+  int32 quantity = 2;
+}
+
+message OrderResponse {
+  bool success = 1;
+  string order_id = 2;
+  string message = 3;
+}

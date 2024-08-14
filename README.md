@@ -33,3 +33,23 @@ RPC supports efficient streaming by enabling client-side, server-side, and bidir
 3) Difference between json and protocol buffers?
 4) What are the features of the gRPC framework?
 5) How to use gRPC in a Microservice environment?
+
+# To create stubs run it under protos folder
+
+```
+protoc \
+    --go_out=./golang/order \
+    --go_opt=paths=source_relative \
+    --go-grpc_out=./golang/order \
+    --go-grpc_opt=paths=source_relative \
+    ./order.proto
+```
+
+```
+protoc \
+    --go_out=./golang/payment \
+    --go_opt=paths=source_relative \
+    --go-grpc_out=./golang/payment \
+    --go-grpc_opt=paths=source_relative \
+    ./payment.proto
+```
