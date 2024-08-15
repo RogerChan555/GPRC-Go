@@ -38,18 +38,18 @@ RPC supports efficient streaming by enabling client-side, server-side, and bidir
 
 ```
 protoc \
-    --go_out=./golang/order \
+    --go_out=./golang/orders \
     --go_opt=paths=source_relative \
-    --go-grpc_out=./golang/order \
+    --go-grpc_out=./golang/orders \
     --go-grpc_opt=paths=source_relative \
     ./order.proto
 ```
 
 ```
 protoc \
-    --go_out=./golang/payment \
+    --go_out=./golang/payments \
     --go_opt=paths=source_relative \
-    --go-grpc_out=./golang/payment \
+    --go-grpc_out=./golang/payments \
     --go-grpc_opt=paths=source_relative \
     ./payment.proto
 ```

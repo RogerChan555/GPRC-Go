@@ -1,7 +1,7 @@
-package order
+package orders
 
 import (
-	"github.com/fmo/grpc/protos/golang/payment"
+	"github.com/fmo/grpc/protos/golang/payments"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"log"
@@ -9,7 +9,7 @@ import (
 )
 
 type PaymentClient struct {
-	client payment.PaymentServiceClient
+	client payments.PaymentServiceClient
 }
 
 func NewPaymentClient(address string) (*PaymentClient, error) {

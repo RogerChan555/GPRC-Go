@@ -4,7 +4,7 @@
 // - protoc             v4.25.1
 // source: order.proto
 
-package order
+package orders
 
 import (
 	context "context"
@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	OrderService_PlaceOrder_FullMethodName = "/order.OrderService/PlaceOrder"
+	OrderService_PlaceOrder_FullMethodName = "/orders.OrderService/PlaceOrder"
 )
 
 // OrderServiceClient is the client API for OrderService service.
@@ -97,7 +97,7 @@ func _OrderService_PlaceOrder_Handler(srv interface{}, ctx context.Context, dec 
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var OrderService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "order.OrderService",
+	ServiceName: "orders.OrderService",
 	HandlerType: (*OrderServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

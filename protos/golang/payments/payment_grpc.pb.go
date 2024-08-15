@@ -4,7 +4,7 @@
 // - protoc             v4.25.1
 // source: payment.proto
 
-package payment
+package payments
 
 import (
 	context "context"
@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	PaymentService_MakePayment_FullMethodName = "/payment.PaymentService/MakePayment"
+	PaymentService_MakePayment_FullMethodName = "/payments.PaymentService/MakePayment"
 )
 
 // PaymentServiceClient is the client API for PaymentService service.
@@ -97,7 +97,7 @@ func _PaymentService_MakePayment_Handler(srv interface{}, ctx context.Context, d
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var PaymentService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "payment.PaymentService",
+	ServiceName: "payments.PaymentService",
 	HandlerType: (*PaymentServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
