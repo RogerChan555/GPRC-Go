@@ -53,3 +53,17 @@ protoc \
     --go-grpc_opt=paths=source_relative \
     ./payment.proto
 ```
+
+# To tag sub golang module
+
+```
+git tag protos/golang/orders/v0.0.2
+git push origin protos/golang/orders/v0.0.2
+```
+
+And under protos/golang/orders go mod should be created. Also the repo requires that 
+will do the following 
+
+```
+go get github.com/fmo/grpc/protos/golang/orders@v0.0.2
+```
