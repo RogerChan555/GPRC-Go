@@ -67,3 +67,10 @@ will do the following
 ```
 go get github.com/fmo/grpc/protos/golang/orders@v0.0.2
 ```
+
+This is mainly called as Unary RPC. 
+
+## Streaming
+
+Putting stream keyword in front of request or response objects or both (called as bidirectional streaming)
+makes it possible to stream the data.
