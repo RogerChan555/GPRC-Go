@@ -54,6 +54,8 @@ protoc \
     ./payment.proto
 ```
 
+This is mainly called as Unary RPC.
+
 # To tag sub golang module
 
 ```
@@ -67,8 +69,6 @@ will do the following
 ```
 go get github.com/fmo/grpc/protos/golang/orders@v0.0.2
 ```
-
-This is mainly called as Unary RPC. 
 
 ## Streaming
 
