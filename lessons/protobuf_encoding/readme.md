@@ -18,3 +18,11 @@ The term "Base 128" in Base 128 Varints refers to the fact that each byte in the
 The varint encoding of 150 is 0x96 0x01, which is 9601 in hexadecimal.
 
 When its marshalled to binary, it uses base 128 varints to encode the go struct to binary.
+
+## Message Structure
+
+A protocol buffer message is a series of key-value pairs. The binary version of a message just uses the field’s number as the key – the name and declared type for each field can only be determined on the decoding end by referencing the message type’s definition (i.e. the .proto file). Protoscope does not have access to this information, so it can only provide the field numbers.
+
+When a message is encoded, each key-value pair is turned into a record consisting of the field number, a wire type and a payload. The wire type tells the parser how big the payload after it is. This allows old parsers to skip over new fields they don’t understand. This type of scheme is sometimes called Tag-Length-Value, or TLV.
+
+There are six wire types: VARINT, I64, LEN, SGROUP, EGROUP, and I32
