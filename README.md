@@ -84,7 +84,7 @@ This is mainly called as Unary RPC.
 }' -plaintext localhost:50052 orders.OrderService/PlaceOrder
 ```
 
-# To tag sub golang module
+## To tag sub golang module
 
 ```
 git tag protos/golang/orders/v0.0.2
