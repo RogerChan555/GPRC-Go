@@ -21,4 +21,12 @@ func main() {
 
 	// Print the serialized output as hexadecimal
 	fmt.Printf("Serialized message: %X\n", serializedMsg)
+
+	// Hex literal
+	hexLiteral := []byte{0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x0a}
+	fmt.Printf("Hex literal: %x\n", hexLiteral)
+
+	// UTF-8 string
+	utf8String := "Hello, Protobuf!"
+	fmt.Printf("UTF-8 string: %x\n", utf8String)
 }
