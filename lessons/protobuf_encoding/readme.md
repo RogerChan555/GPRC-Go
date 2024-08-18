@@ -16,3 +16,5 @@ sent across the network (the "wire") or stored on disk.
 The term "Base 128" in Base 128 Varints refers to the fact that each byte in the encoding can represent 128 different values (0-127) for the actual data, with the most significant bit (MSB) used as a continuation flag. This allows for efficient encoding of integers using a variable number of bytes.
 
 The varint encoding of 150 is 0x96 0x01, which is 9601 in hexadecimal.
+
+When its marshalled to binary, it uses base 128 varints to encode the go struct to binary.
