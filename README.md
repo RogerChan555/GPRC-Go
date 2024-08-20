@@ -102,3 +102,7 @@ go get github.com/fmo/grpc/protos/golang/orders@v0.0.2
 
 Putting stream keyword in front of request or response objects or both (called as bidirectional streaming)
 makes it possible to stream the data.
+
+## Protocol Buffers
+
+Protocol buffers allow you to serialize structured data to be transmitted over a wire. You can also define service functions and generate language-specific source code. The definitions of messages and service functions are written in a configuration file called a .proto file.
