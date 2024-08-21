@@ -11,7 +11,31 @@ https://protobuf.dev/programming-guides/encoding/#varints
 The wire format is the binary encoding format that Protobuf uses to serialize the data defined in your .proto file before it's 
 sent across the network (the "wire") or stored on disk.
 
-<img width="773" alt="Screenshot 2024-08-18 at 13 48 44" src="https://github.com/user-attachments/assets/eec261a0-f80b-4a4a-af5f-9120940efca5">
+## Space Calculation Example
+
+Let's use a simple example to illustrate how much space a serialized Protobuf message might
+consume on disk.
+
+```
+message Test {
+  optional int32 a = 1;
+}
+```
+
+if you set `a = 150`, the wire format would look like this:
+
+```
+08 96 01
+```
+
+Here's the breakdown:
+
+```
+08 (1 byte): This encodes the field number (`1`) and the wire type (`variant`)
+96 01 (2 bytes): This is the variable-length encoding of the integer `150`
+```
+
+So, this message consumes 3 bytes in total.
 
 <img width="831" alt="Screenshot 2024-08-18 at 14 31 13" src="https://github.com/user-attachments/assets/a3681aa9-20c2-4348-aa0f-362dcb167211">
 <img width="821" alt="Screenshot 2024-08-18 at 14 31 21" src="https://github.com/user-attachments/assets/56883424-a0d0-4b62-96b1-04fe45c8081e">
