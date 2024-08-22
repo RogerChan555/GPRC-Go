@@ -1,17 +1,21 @@
-## to run the test
+## To run the test
 
 ```
 protoc --go_out=. --go_opt=paths=source_relative encoding.proto
 ```
 
-## resource for encoding
+## Resource for Encoding
 https://protobuf.dev/programming-guides/encoding/#varints
 
 ## What is the "Wire Format"?
 The wire format is the binary encoding format that Protobuf uses to serialize the data defined in your .proto file before it's 
 sent across the network (the "wire") or stored on disk.
 
-## Space Calculation Example
+## Protoscope to Describe the low-level Wire Format
+
+Protoscope is a very simple language for describing snippets of the low-level wire format, which we’ll use to provide a visual reference for the encoding of various messages. Protoscope’s syntax consists of a sequence of tokens that each encode down to a specific byte sequence.
+
+## A Simple Example
 
 Let's use a simple example to illustrate how much space a serialized Protobuf message might
 consume on disk.
