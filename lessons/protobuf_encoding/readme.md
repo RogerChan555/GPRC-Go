@@ -55,7 +55,7 @@ Variable-width integers, or varints, are at the core of the wire format.
 Variable-width integers (also known as variable-length integers or varints) are a way to encode integers using a variable number of bytes, rather than a fixed number. 
 This encoding is commonly used in data formats where space efficiency is critical.
 
-## More about Variable-with integers
+### More about Variable-with integers
 
 Variable-length encoding format, often used in protocols like Protocol Buffers (Protobuf) to optimize the storage of data. Specifically, it's describing a method where small unsigned 64-bit integers 
 can be encoded in fewer bytes, while larger numbers may take more bytes.
