@@ -5,7 +5,7 @@ protoc --go_out=. --go_opt=paths=source_relative encoding.proto
 ```
 
 ## Resource for Encoding
-https://protobuf.dev/programming-guides/encoding/#varints
+https://protobuf.dev/programming-guides/encoding
 
 ## What is the "Wire Format"?
 The wire format is the binary encoding format that Protobuf uses to serialize the data defined in your .proto file before it's 
