@@ -46,6 +46,43 @@ So, this message consumes 3 bytes in total.
 The term "Base 128" in Base 128 Varints refers to the fact that each byte in the encoding can represent 128 different values (0-127) for the actual data, with the most significant bit (MSB) used as a continuation flag. 
 This allows for efficient encoding of integers using a variable number of bytes.
 
+### Why 128 Different Values?
+
+A byte has 8 bits:
+
+A byte is made up of 8 bits, which means it can represent 
+2<sup>8</sup> = 256 different values, ranging from 0 to 255.
+
+Using 7 bits for data:
+
+In Base 128 Varint encoding, we only use 7 of these 8 bits to represent the actual data.
+The remaining 1 bit (the most significant bit, or MSB) is used as a continuation flag.
+7 bits can represent 128 values:
+
+With 7 bits, the number of possible combinations is 
+2<sup>7</sup> = 128
+These combinations allow you to represent values from 0 to 127.
+
+Example:
+Consider a single byte in binary. Normally, 8 bits can range from:
+
+00000000 (which is 0 in decimal)
+to 11111111 (which is 255 in decimal).
+But in Base 128 Varints, since only 7 bits are used for the data, the range becomes:
+
+0000000 (which is 0 in decimal)
+to 1111111 (which is 127 in decimal).
+Visual Breakdown:
+8-bit binary representation: b7 b6 b5 b4 b3 b2 b1 b0
+7 bits for data: b6 b5 b4 b3 b2 b1 b0
+1 bit for continuation flag: b7
+
+By limiting the data representation to 7 bits, you get 128 possible values (from 0000000 to 1111111), which corresponds to the decimal range of 0 to 127.
+
+This is why each byte in Base 128 Varint encoding can represent 128 different values. The 8th bit is reserved for signaling whether the next byte continues the value or if this byte is the last one.
+
+### Continue to Base 128 Variants
+
 The varint encoding of 150 is 0x96 0x01, which is 9601 in hexadecimal.
 
 When it's marshalled to binary, it uses base 128 varints to encode the go struct to binary.
