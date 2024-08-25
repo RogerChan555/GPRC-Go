@@ -46,6 +46,8 @@ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 
 RPC supports efficient streaming by enabling client-side, server-side, and bidirectional streaming, allowing continuous data flow and real-time communication between services.
 
+Putting stream keyword in front of request or response objects or both (called as bidirectional streaming) makes it possible to stream the data.
+
 # To create stubs run it under protos folder
 
 ```
@@ -93,8 +95,3 @@ will do the following
 ```
 go get github.com/fmo/grpc/protos/golang/orders@v0.0.2
 ```
-
-## Streaming
-
-Putting stream keyword in front of request or response objects or both (called as bidirectional streaming)
-makes it possible to stream the data.
