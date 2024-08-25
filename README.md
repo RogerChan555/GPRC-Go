@@ -46,14 +46,6 @@ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 
 RPC supports efficient streaming by enabling client-side, server-side, and bidirectional streaming, allowing continuous data flow and real-time communication between services.
 
-# 10 Questions about gRPC
-
-1) What’s the difference between RPC and gRPC?
-2) What are protocol buffers? 
-3) Difference between json and protocol buffers?
-4) What are the features of the gRPC framework?
-5) How to use gRPC in a Microservice environment?
-
 # To create stubs run it under protos folder
 
 ```
