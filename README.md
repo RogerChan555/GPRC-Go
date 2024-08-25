@@ -68,7 +68,7 @@ protoc \
     ./payment.proto
 ```
 
-This is mainly called as Unary RPC.
+This is mainly called as Unary RPC. (The simplest type where the client sends a single request and gets a single response from the server.)
 
 ## To call the order service
 
