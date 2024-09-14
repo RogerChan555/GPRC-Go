@@ -42,7 +42,7 @@ func (s *OrderServiceServer) PlaceOrder(ctx context.Context, req *orders.OrderRe
 		Amount: totalAmount,
 	}
 
-	paymentCtx, cancel := context.WithTimeout(context.Background(), time.Second)
+	paymentCtx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
 	paymentRes, err := paymentClient.MakePayment(paymentCtx, paymentReq)
