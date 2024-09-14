@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package discounts;
+
+option go_package = "github.com/fmo/grpc/protos/golang/discounts";
+
+service DiscountService {
+  rpc CheckDiscount (CheckDiscountRequest) returns (CheckDiscountResponse);
+}
+
+message CheckDiscountRequest {
+  string coupon_code = 1;
+}
+
+message CheckDiscountResponse {
+  bool success = 1;
+}
