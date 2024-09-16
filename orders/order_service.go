@@ -5,7 +5,9 @@ import (
 	"fmt"
 	"github.com/fmo/grpc/protos/golang/orders"
 	"github.com/fmo/grpc/protos/golang/payments"
+	grpc_retry "github.com/grpc-ecosystem/go-grpc-middleware/retry"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/reflection"
 	"log"
@@ -22,6 +24,12 @@ func (s *OrderServiceServer) PlaceOrder(ctx context.Context, req *orders.OrderRe
 
 	var opts []grpc.DialOption
 
+	opts = append(opts,
+		grpc.WithUnaryInterceptor(grpc_retry.UnaryClientInterceptor(
+			grpc_retry.WithCodes(codes.Unavailable, codes.ResourceExhausted),
+			grpc_retry.WithMax(15),
+			grpc_retry.WithBackoff(grpc_retry.BackoffLinear(time.Second)),
+		)))
 	opts = append(opts, grpc.WithTransportCredentials(insecure.NewCredentials()))
 
 	conn, err := grpc.NewClient("localhost:50051", opts...)
@@ -42,7 +50,7 @@ func (s *OrderServiceServer) PlaceOrder(ctx context.Context, req *orders.OrderRe
 		Amount: totalAmount,
 	}
 
-	paymentCtx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	paymentCtx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()
 
 	paymentRes, err := paymentClient.MakePayment(paymentCtx, paymentReq)

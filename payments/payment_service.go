@@ -19,7 +19,7 @@ type PaymentServiceServer struct {
 func (s *PaymentServiceServer) MakePayment(ctx context.Context, req *payments.PaymentRequest) (*payments.PaymentResponse, error) {
 	log.Printf("Processing payment for user: %s, amount: %f", req.UserId, req.Amount)
 
-	time.Sleep(3 * time.Second)
+	time.Sleep(1 * time.Second)
 
 	var opts []grpc.DialOption
 

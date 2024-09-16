@@ -17,7 +17,7 @@ type DiscountServiceServer struct {
 func (s *DiscountServiceServer) CheckDiscount(ctx context.Context, req *discounts.CheckDiscountRequest) (*discounts.CheckDiscountResponse, error) {
 	log.Printf("Checking discount for the coupon code %s", req.CouponCode)
 
-	time.Sleep(2 * time.Second)
+	time.Sleep(1 * time.Second)
 
 	return &discounts.CheckDiscountResponse{
 		Success: true,
