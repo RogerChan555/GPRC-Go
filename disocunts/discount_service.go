@@ -20,7 +20,7 @@ func (s *DiscountServiceServer) CheckDiscount(ctx context.Context, req *discount
 	time.Sleep(1 * time.Second)
 
 	return &discounts.CheckDiscountResponse{
-		Success: true,
+		Success: false,
 	}, nil
 }
 

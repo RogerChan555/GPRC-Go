@@ -5,11 +5,13 @@ import (
 	"fmt"
 	"github.com/fmo/grpc/protos/golang/orders"
 	"github.com/fmo/grpc/protos/golang/payments"
-	grpc_retry "github.com/grpc-ecosystem/go-grpc-middleware/retry"
+	grpcretry "github.com/grpc-ecosystem/go-grpc-middleware/retry"
+	"google.golang.org/genproto/googleapis/rpc/errdetails"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/reflection"
+	"google.golang.org/grpc/status"
 	"log"
 	"net"
 	"time"
@@ -25,10 +27,10 @@ func (s *OrderServiceServer) PlaceOrder(ctx context.Context, req *orders.OrderRe
 	var opts []grpc.DialOption
 
 	opts = append(opts,
-		grpc.WithUnaryInterceptor(grpc_retry.UnaryClientInterceptor(
-			grpc_retry.WithCodes(codes.Unavailable, codes.ResourceExhausted),
-			grpc_retry.WithMax(15),
-			grpc_retry.WithBackoff(grpc_retry.BackoffLinear(time.Second)),
+		grpc.WithUnaryInterceptor(grpcretry.UnaryClientInterceptor(
+			grpcretry.WithCodes(codes.Unavailable, codes.ResourceExhausted),
+			grpcretry.WithMax(15),
+			grpcretry.WithBackoff(grpcretry.BackoffLinear(time.Second)),
 		)))
 	opts = append(opts, grpc.WithTransportCredentials(insecure.NewCredentials()))
 
@@ -55,7 +57,16 @@ func (s *OrderServiceServer) PlaceOrder(ctx context.Context, req *orders.OrderRe
 
 	paymentRes, err := paymentClient.MakePayment(paymentCtx, paymentReq)
 	if err != nil {
-		return nil, fmt.Errorf("failed to make payment: %v", err)
+		st, _ := status.FromError(err)
+		fieldErr := &errdetails.BadRequest_FieldViolation{
+			Field:       "payment",
+			Description: st.Message(),
+		}
+		badReq := &errdetails.BadRequest{}
+		badReq.FieldViolations = append(badReq.FieldViolations, fieldErr)
+		orderStatus := status.New(codes.InvalidArgument, "payment failed")
+		statusWithDetails, _ := orderStatus.WithDetails(badReq)
+		return nil, statusWithDetails.Err()
 	}
 
 	if !paymentRes.Success {
