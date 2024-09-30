@@ -14,6 +14,7 @@ import (
 	"google.golang.org/grpc/status"
 	"log"
 	"net"
+	"strings"
 	"time"
 )
 
@@ -57,15 +58,25 @@ func (s *OrderServiceServer) PlaceOrder(ctx context.Context, req *orders.OrderRe
 
 	paymentRes, err := paymentClient.MakePayment(paymentCtx, paymentReq)
 	if err != nil {
-		st, _ := status.FromError(err)
+		st := status.Convert(err)
+		var allErrors []string
+		for _, detail := range st.Details() {
+			switch t := detail.(type) {
+			case *errdetails.BadRequest:
+				for _, violation := range t.GetFieldViolations() {
+					allErrors = append(allErrors, violation.Description)
+				}
+			}
+		}
 		fieldErr := &errdetails.BadRequest_FieldViolation{
 			Field:       "payment",
-			Description: st.Message(),
+			Description: strings.Join(allErrors, "\n"),
 		}
 		badReq := &errdetails.BadRequest{}
 		badReq.FieldViolations = append(badReq.FieldViolations, fieldErr)
-		orderStatus := status.New(codes.InvalidArgument, "payment failed")
+		orderStatus := status.New(codes.InvalidArgument, "order creation failed")
 		statusWithDetails, _ := orderStatus.WithDetails(badReq)
+
 		return nil, statusWithDetails.Err()
 	}
 
