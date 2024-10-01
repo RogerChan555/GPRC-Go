@@ -57,7 +57,7 @@ func (s *PaymentServiceServer) MakePayment(ctx context.Context, req *payments.Pa
 
 		fieldErr := &errdetails.BadRequest_FieldViolation{
 			Field:       "payment",
-			Description: fmt.Sprintf("failed to charge user: %d", req.UserId),
+			Description: fmt.Sprintf("failed to charge user: %v", req.UserId),
 		}
 		badReq.FieldViolations = append(badReq.FieldViolations, fieldErr)
 	}
