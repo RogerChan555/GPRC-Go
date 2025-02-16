@@ -12,13 +12,14 @@ Here's why gRPC solves this problem:
           rpc CreditAccount (CreditRequest) returns (AccountResponse);
           rpc DebitAccount (DebitRequest) returns (AccountResponse);
           rpc TransferFunds (TransferRequest) returns (TransferResponse);
-        }
-       ```
+        }```
+
      * Each method handles a specific update operation, making the API design more intuitive.
 
   2. Streaming Support for Batch Updates
 
     * gRPC supports bidirectional streaming, allowing multiple updates to be sent efficiently in a single connection.
+
     * Example: A client can send multiple update requests in a stream instead of making multiple REST API calls.
 
   3. Strongly Typed Messages
