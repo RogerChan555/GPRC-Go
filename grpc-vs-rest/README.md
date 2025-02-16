@@ -12,7 +12,8 @@ Here's why gRPC solves this problem:
           rpc CreditAccount (CreditRequest) returns (AccountResponse);
           rpc DebitAccount (DebitRequest) returns (AccountResponse);
           rpc TransferFunds (TransferRequest) returns (TransferResponse);
-        }```
+        }
+       ```
 
      * Each method handles a specific update operation, making the API design more intuitive.
 
