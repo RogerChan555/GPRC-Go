@@ -19,14 +19,14 @@ Here's why gRPC solves this problem:
    * Each method handles a specific update operation, making the API design more intuitive.
 
 2. Streaming Support for Batch Updates
-  * gRPC supports bidirectional streaming, allowing multiple updates to be sent efficiently in a single connection.
-  * Example: A client can send multiple update requests in a stream instead of making multiple REST API calls.
+    * gRPC supports bidirectional streaming, allowing multiple updates to be sent efficiently in a single connection.
+    * Example: A client can send multiple update requests in a stream instead of making multiple REST API calls.
 
 3. Strongly Typed Messages
-  * REST often uses JSON, which lacks strict schema enforcement. In gRPC, Protocol Buffers enforce structured data, reducing ambiguity.
+    * REST often uses JSON, which lacks strict schema enforcement. In gRPC, Protocol Buffers enforce structured data, reducing ambiguity.
 
 4. Efficient Binary Communication
-  * Instead of sending updates as multiple HTTP requests with JSON payloads, gRPC sends them in a compact binary format, reducing overhead.
+    * Instead of sending updates as multiple HTTP requests with JSON payloads, gRPC sends them in a compact binary format, reducing overhead.
 
 5. Built-in Concurrency Handling
-  * gRPC servers can efficiently handle multiple concurrent requests using HTTP/2 multiplexing, whereas REST APIs typically require separate HTTP requests for each update.
+    * gRPC servers can efficiently handle multiple concurrent requests using HTTP/2 multiplexing, whereas REST APIs typically require separate HTTP requests for each update.
